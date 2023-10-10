@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://127.0.0.1:5500/FORUMS.HTML -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        body {
+
+            background-color: rgb(15, 5, 58);
+            /* background: linear-gradient(to right ,grey,blue); */
+            font-family: "montserrat", sans-serif;
+        }
+
+        h1 {
+            color: black;
+            display: flex;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        #mybutton {
+            background: #00CC80;
+            width: auto;
+            display: block;
+            color: #fff;
+            border-radius: 20px;
+            padding: .5em;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 3% auto 7%;
+            position: relative;
+            z-index: 4;
+
+        }
+
+        #innerdiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #comment {
+
+            width: 100%;
+            height: 100px;
+            margin-top: 300px;
+            background-color: rgb(24, 24, 59);
+            color: #fff;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #828076;
+        }
+
+
+        ul {
+            list-style-type: none;
+            margin-left: 90%;
+            padding: 0;
+
+        }
+
+        .blue-container {
+            width: 100%;
+            background: #277e9b;
+            color: #fff;
+            margin-top: 0%;
+            padding: 1em 0 1em;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px
+        }
+
+
+        #upvote-button {
+            background: #828076;
+            width: auto;
+            display: block;
+            color: #fff;
+            border-radius: 10px;
+            padding: .3em;
+            text-decoration: none;
+            font-size: 1em;
+            margin: 3% auto 7%;
+            position: relative;
+            z-index: 4;
+        }
+
+        #downVote-button {
+            background: #828076;
+            width: auto;
+            display: block;
+            color: #fff;
+            border-radius: 10px;
+            padding: .3em;
+            text-decoration: none;
+            font-size: 1em;
+            margin: 3% auto 7%;
+            position: relative;
+            z-index: 4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blue-container">
+        <h1>
+            ChatCraze
+        </h1>
+
+    </div>
+    <ul>
+        <li>
+            <a href="http://127.0.0.1:5500/posts.html">posts</a>
+
+        </li>
+    </ul>
+    <div id="parentDiv"><div><table style="border:2px solid black;">
+                <tbody><tr>
+                <th>comment</th>
+                <th><button id="upvote-button0" onclick="fun(0)">Upvote</button></th>
+                <th><div id="score0">1</div></th>
+                <th><button id="downvote-button0" onclick="fun1(0)">Downvote</button></th>
+                </tr>
+                <tr><td>this is my first web development project</td><td></td><td></td></tr></tbody></table></div><div><table style="border:2px solid black;">
+                <tbody><tr>
+                <th>comment</th>
+                <th><button id="upvote-button1" onclick="fun(1)">Upvote</button></th>
+                <th><div id="score1">3</div></th>
+                <th><button id="downvote-button1" onclick="fun1(1)">Downvote</button></th>
+                </tr>
+                <tr><td>Web development is the work involved in developing a website for the Internet (World Wide Web) or an intranet (a private network).[1] Web development can range from developing a simple single static page of plain text to complex web applications, electronic businesses, and social network services. A more comprehensive list of tasks to which Web development commonly refers, may include Web engineering, Web design, Web content development, client liaison, client-side/server-side scripting, Web server and network security configuration, and e-commerce development.</td><td></td><td></td></tr></tbody></table></div></div>
+    <input type="text" id="comment" placeholder="add a comment">
+
+
+
+    <button id="mybutton">
+        post
+    </button>
+
+    <script>
+        var i = 0;
+        const posts = [];
+
+        document.getElementById("mybutton").addEventListener("click", function () {
+            const innerText = document.getElementById("parentDiv").innerHTML;
+            posts.push(innerText);
+            const commentValue = document.getElementById("comment").value;
+            const postIndex = posts.length - 1;
+
+            const ele = document.createElement("div");
+            ele.innerHTML = `<table style='border:2px solid black;'>
+                <tr>
+                <th>comment</th>
+                <th><button id='upvote-button${postIndex}' onclick='fun(${postIndex})'>Upvote</button></th>
+                <th><div id='score${postIndex}'>0</div></th>
+                <th><button id='downvote-button${postIndex}' onclick='fun1(${postIndex})'>Downvote</button></th>
+                </tr>
+                <tr><td>${commentValue}</td><td></td><td></td></tr></table>`;
+
+            document.getElementById("parentDiv").appendChild(ele);
+        });
+
+        function fun(index) {
+            i++;
+            document.getElementById(`score${index}`).innerHTML = i;
+        }
+
+        function fun1(index) {
+            i--;
+            document.getElementById(`score${index}`).innerHTML = i;
+        }
+    </script>
+    <br>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>
